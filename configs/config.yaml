@@ -1,0 +1,35 @@
+project:
+  name: oxford_pets_classification
+  seed: 42
+
+data:
+  dataset: oxford_iiit_pet
+  data_dir: data
+  image_size: 224
+  batch_size: 32
+  num_workers: 2
+  val_ratio: 0.15
+  use_weighted_sampler: true
+  imbalance_ratio_threshold: 1.5
+  augmentation:
+    random_resized_crop: true
+    horizontal_flip: true
+    color_jitter: true
+    rotation_deg: 10
+
+model:
+  name: resnet18
+  pretrained: true
+  freeze_backbone: false
+
+training:
+  epochs: 8
+  lr: 0.0003
+  weight_decay: 0.0001
+  label_smoothing: 0.0
+
+output:
+  checkpoints_dir: outputs/checkpoints
+  figures_dir: outputs/figures
+  metrics_path: outputs/metrics.json
+  class_report_path: outputs/class_report.csv

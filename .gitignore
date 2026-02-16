@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+.venv/
+venv/
+.env
+.DS_Store
+outputs/checkpoints/
+outputs/figures/
+outputs/*.csv
+outputs/*.json
+outputs/*.pth
+outputs/*.pt
