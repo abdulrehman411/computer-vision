@@ -66,8 +66,8 @@ def _get_class_names(dataset: OxfordIIITPet) -> List[str]:
 
 
 def build_datasets(data_dir: str, val_ratio: float, seed: int) -> DatasetSplits:
-    trainval = OxfordIIITPet(root=data_dir, split="trainval", target_type="category", download=True)
-    test = OxfordIIITPet(root=data_dir, split="test", target_type="category", download=True)
+    trainval = OxfordIIITPet(root=data_dir, split="trainval", target_types="category", download=True)
+    test = OxfordIIITPet(root=data_dir, split="test", target_types="category", download=True)
 
     targets = _get_targets(trainval)
     indices = np.arange(len(trainval))

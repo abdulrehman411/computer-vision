@@ -8,6 +8,26 @@ This project implements a clean, end-to-end computer vision workflow for **image
 - Real-world variability (pose, lighting, backgrounds).
 - Public, well-documented, and commonly used for CV benchmarking.
 
+## Setup
+
+### Prerequisites
+- Python 3.9+
+- macOS/Linux (tested on macOS)
+
+### Installation
+
+1. Clone and setup venv:
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+2. Validate setup:
+```bash
+./run.sh scripts/validate_setup.py
+```
+
 ## Dataset
 - **Name:** Oxford-IIIT Pet
 - **Size:** 7,349 images (trainval + test)
@@ -17,7 +37,7 @@ This project implements a clean, end-to-end computer vision workflow for **image
 ### Data understanding
 Generate dataset summary and class distribution:
 
-- Run: `python scripts/data_report.py --data-dir data --output-dir outputs`
+- Run: `./run.sh scripts/data_report.py --data-dir data --output-dir outputs`
 
 Outputs:
 - `outputs/dataset_summary.json`
@@ -41,28 +61,28 @@ Outputs:
 - CPU-friendly
 
 Run:
-- `python scripts/train_baseline.py --config configs/config.yaml`
+- `./run.sh scripts/train_baseline.py --config configs/config.yaml`
 
 ### Stronger model
 - ResNet18 (ImageNet pretrained)
 - Optional backbone freezing in config
 
 Run:
-- `python scripts/train_resnet.py --config configs/config.yaml`
+- `./run.sh scripts/train_resnet.py --config configs/config.yaml`
 
 ## Evaluation
 Evaluate a checkpoint on the test set:
-- `python scripts/evaluate.py --config configs/config.yaml --checkpoint outputs/checkpoints/resnet18_best.pth`
+- `./run.sh scripts/evaluate.py --config configs/config.yaml --checkpoint outputs/checkpoints/resnet18_best.pth`
 
 This also saves a confusion matrix to `outputs/figures/confusion_matrix.png`.
 
 ## Error Analysis
 Misclassification visualization:
-- `python scripts/error_analysis.py --config configs/config.yaml --checkpoint outputs/checkpoints/resnet18_best.pth --max-samples 16`
+- `./run.sh scripts/error_analysis.py --config configs/config.yaml --checkpoint outputs/checkpoints/resnet18_best.pth --max-samples 16`
 
 ## Inference
 Run inference on a single image:
-- `python scripts/infer.py --image /path/to/image.jpg --checkpoint outputs/checkpoints/resnet18_best.pth`
+- `./run.sh scripts/infer.py --image /path/to/image.jpg --checkpoint outputs/checkpoints/resnet18_best.pth`
 
 ## Engineering Notes
 - Stratified train/val split from the official trainval set.

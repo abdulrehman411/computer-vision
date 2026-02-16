@@ -12,8 +12,8 @@ logger = setup_logger("data_analysis")
 
 
 def dataset_summary(data_dir: str) -> Dict:
-    trainval = OxfordIIITPet(root=data_dir, split="trainval", target_type="category", download=True)
-    test = OxfordIIITPet(root=data_dir, split="test", target_type="category", download=True)
+    trainval = OxfordIIITPet(root=data_dir, split="trainval", target_types="category", download=True)
+    test = OxfordIIITPet(root=data_dir, split="test", target_types="category", download=True)
 
     targets = None
     if hasattr(trainval, "targets"):
