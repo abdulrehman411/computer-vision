@@ -91,10 +91,37 @@ Run inference on a single image:
 - Clean separation between training and inference.
 
 ## If More Compute Were Available
-- Train larger backbones (EfficientNet, ConvNeXt) and tune resolution.
-- Extensive hyperparameter search and regularization sweeps.
-- Hard example mining and label noise inspection.
-- Ensembling and test-time augmentation.
+
+### Scaling Training
+- **Multi-GPU training**: Implement DistributedDataParallel for faster epoch times on larger models
+- **Mixed precision (FP16)**: Use automatic mixed precision to reduce memory and speed up training
+- **Larger batch sizes**: Scale to 128-256 with learning rate adjustments (linear scaling rule)
+- **Extended training**: Increase epochs to 30-50 with learning rate scheduling (cosine annealing, warmup)
+- **Cross-validation**: Run 5-fold CV to get more robust performance estimates and reduce variance
+
+### Model Improvements
+- **Modern architectures**: EfficientNetV2, ConvNeXt, Vision Transformers (ViT, Swin)
+- **Higher resolution**: Train at 384x384 or 512x512 for finer-grained breed discrimination
+- **Architecture search**: Explore depth, width, and compound scaling for optimal capacity
+- **Advanced regularization**: Stochastic depth, mixup/cutmix, dropout tuning
+- **Fine-grained techniques**: Attention mechanisms, bilinear pooling for subtle breed features
+- **Ensembling**: Train multiple models with different initializations and architectures
+
+### Data Improvements
+- **Data augmentation search**: AutoAugment, RandAugment, TrivialAugment for optimal policy
+- **Advanced augmentations**: CutOut, GridMask, AugMax for improved generalization
+- **External data**: Leverage additional dog/cat images from ImageNet or COCO for pretraining
+- **Hard example mining**: Identify and oversample frequently misclassified breeds
+- **Label noise analysis**: Review borderline cases, potential annotation errors in difficult classes
+- **Test-time augmentation**: Average predictions over multiple augmented views at inference
+- **Class balancing strategies**: Compare focal loss, class-balanced loss, vs weighted sampling
+
+### Analysis & Debugging
+- **Per-class error analysis**: Deep dive into confused breed pairs (e.g., similar terriers)
+- **Feature visualization**: Grad-CAM/attention maps to verify model focuses on discriminative regions
+- **Learning curve analysis**: Plot training curves to diagnose underfitting vs overfitting
+- **Confusion patterns**: Identify systematic errors (e.g., all longhaired breeds confused)
+- **Data subset experiments**: Train on progressively larger subsets to estimate saturation point
 
 ## Reproducibility
 - Seeded for deterministic results (where possible).
